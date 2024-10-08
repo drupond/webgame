@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Game</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables for Light and Dark Modes */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #000;
+            --primary-color: rgb(0, 0, 116);
+            --secondary-color: #6c757d;
+            --navbar-bg: #ffffff;
+            --footer-bg: #ffffff;
+            --button-bg: #4CAF50;
+            --button-hover-bg: #45a049;
+            --border-color: #dee2e6;
+        }
+
+        .dark-mode {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --primary-color: #90caf9;
+            --secondary-color: #b0bec5;
+            --navbar-bg: #1f1f1f;
+            --footer-bg: #1f1f1f;
+            --button-bg: #388e3c;
+            --button-hover-bg: #2e7d32;
+            --border-color: #333333;
+        }
+
+        /* Global Styles */
+        * {
+            font-family: "Inter", system-ui;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: var(--text-color) !important;
+        }
+
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        /* Toggle Switch Styling */
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Carousel Customization */
+        .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .section-title+hr {
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            width: 50px;
+            margin-bottom: 30px;
+        }
+
+        /* Scrollable Container */
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 10px;
+        }
+
+        /* Hide Scrollbar */
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Item Styling */
+        .item {
+            flex: 0 0 auto;
+            width: 180px;
+            text-align: center;
+        }
+
+        .item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Buy Button Styling */
+        .buy-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .buy-button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 20px 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        footer .footer-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        footer .nav-link {
+            color: var(--secondary-color);
+            padding: 0 10px;
+        }
+
+        footer .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 200px;
+            }
+
+            .item {
+                width: 140px;
+            }
+
+            .buy-button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Toko Game</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Game</a></li>
+                </ul>
+                <form class="d-flex align-items-center" role="search">
+                    <input class="form-control me-2 pe-5" type="search" placeholder="Cari game?" aria-label="Search">
+                    <button class="btn btn-outline-primary me-3" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </button>
+                    <!-- Dark Mode Toggle -->
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="darkModeToggle">
+                        <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="carouselExampleInterval" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+                <img src="banner1.jpg" class="d-block w-100" alt="Banner 1">
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="banner2.jpg" class="d-block w-100" alt="Banner 2">
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="banner3.jpg" class="d-block w-100" alt="Banner 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Game Terbaru Section -->
+    <div class="container">
+        <h4 class="section-title">Game Terbaru</h4>
+        <hr>
+        <div class="scroll-container mb-5">
+            <!-- Game Items -->
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZOzGg7YhR0APx8Kiv6-QYI3cMKQXRaQZvkA&s"
+                    alt="Game 1">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcPNfUZ7ZZEHqCbFFbAqb3d8yX9FKWkisCtg&s.jpg"
+                    alt="Game 2">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEgETRpk7qBnBBMuHNc9qh1UUpxZ7W9tqmdQ&s.jpg"
+                    alt="Game 3">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTtovoh9wYcgHM3jbP7gCSZ068HYfBC5SQTA&s.jpg"
+                    alt="Game 4">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJAAxopYV8aHF2b5xe-DuyyTV3RLDoIqbIKA&s.jpg"
+                    alt="Game 5">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <!-- Tambahkan lebih banyak item jika diperlukan -->
+        </div>
+    </div>
+
+    <!-- Rekomendasi Untukmu Section -->
+    <div class="container">
+        <h4 class="section-title">Rekomendasi Untukmu!</h4>
+        <hr>
+        <div class="scroll-container mb-5">
+            <!-- Recommendation Items -->
+            <div class="item">
+                <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1665460/header.jpg?t=1726123478"
+                    alt="Rekomendasi 1">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <div class="item">
+                <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222680/header.jpg?t=1716831270"
+                    alt="Rekomendasi 2">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <div class="item">
+                <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2567870/header.jpg?t=1725986873"
+                    alt="Rekomendasi 3">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <div class="item">
+                <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/667970/header.jpg?t=1721938979"
+                    alt="Rekomendasi 4">
+                <a href="#" class="buy-button">Buy</a>
+            </div>
+            <!-- Tambahkan lebih banyak item jika diperlukan -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center">
+            <p class="col-md-4 mb-0 text-body-secondary">© 2024 Toko Game</p>
+            <h5 class="col-md-4 text-center footer-title">Toko Game</h5>
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <!-- Dark Mode Toggle Script -->
+    <script>
+        const toggleSwitch = document.getElementById('darkModeToggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            toggleSwitch.checked = true;
+        }
+
+        toggleSwitch.addEventListener('change', function () {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+
+</html>
